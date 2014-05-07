@@ -23,4 +23,10 @@ describe DummiesController do
     assigns(:dummy).protector_subject?.should be_true
     assigns(:dummy).protector_subject.should == 'default_user'
   end
+
+  it 'creates a new resource' do
+    post :create, dummy: { name: "foo" }
+    assigns(:dummy).errors.should be_blank
+    assigns(:dummy).id.should_not be_blank
+  end
 end
